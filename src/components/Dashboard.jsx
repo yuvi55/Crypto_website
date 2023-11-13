@@ -1,9 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import supabase from "../../supabase";
+import Navbar from "./Navbar";
 
 const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+  const [dbData, setDbData] = useState([]);
 
-export default Dashboard
+  useEffect(() => {
+    async function fetchDbData() {
+      try {
+        const { data, error } = await supabase
+          .from("coin_data")
+          .select("Symbol");
+
+        if (error) {
+          console.error("Error fetching data:", error.message);
+          return;
+        }
+
+        setDbData(data || []);
+      } catch (e) {
+        console.error("Error:", e.message);
+      }
+    }
+
+    fetchDbData();
+  }, []);
+
+  return (
+    <div>
+      <Navbar />
+      <h1 className="text-2xl font-bold mb-4">Welcome to Crypto Info</h1>
+      <div className="grid grid-cols-1 gap-4">
+        {dbData.map((item) => (
+          <div key={item.Symbol} className="p-4 bg-white shadow-md rounded-md">
+            {/* You can add a Link to a specific route or just display the Symbol */}
+            <Link
+              to={`/coin_Info/${item.Symbol}`}
+              className="text-blue-500 hover:underline"
+            >
+              {item.Symbol}
+            </Link>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;

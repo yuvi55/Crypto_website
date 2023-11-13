@@ -5,6 +5,8 @@ import Signup from "@/components/Signup";
 import Login from "@/components/Login";
 import Dashboard from "@/components/Dashboard";
 import NewsFeed from "./components/NewsFeed";
+import Coin_Info from "./components/Coin_Info";
+import Forum from "./components/Forum";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +32,14 @@ export const router = createBrowserRouter([
       {
         path: "/news",
         element: <NewsFeed />,
+      },
+      {
+        path: "/coin_info/:symbol",
+        element: <Coin_Info />,
+      },
+      {
+        path: "/forum",
+        element: <Forum />,
       },
       ,
     ],
