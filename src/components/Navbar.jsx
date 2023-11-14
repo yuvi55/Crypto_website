@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuLink,
   NavigationMenuItem,
   NavigationMenuList,
@@ -10,31 +9,31 @@ import {
 
 const Navbar = () => {
   return (
-    <NavigationMenu className="bg-blue-400 flex justify-between items-center">
-      <NavigationMenuList className="">
-        <NavigationMenuItem>
+    <NavigationMenu className="bg-blue-500 py-4">
+      <NavigationMenuList className="justify-between items-center">
+        <NavigationMenuItem className="mx-0">
           {/* Logo */}
           <Link to="/">
-            <img src="/path/to/logo.png" alt="Logo" className="h-10" />
+            <img
+              src="/crypto_logo.jpeg"
+              alt="Logo"
+              className="h-10 rounded-full"
+            />
           </Link>
         </NavigationMenuItem>
         {/* Navigation Links */}
-        <NavigationMenuItem>
-          <NavigationMenuLink as={Link} to="/forum">
-            Forum
-          </NavigationMenuLink>
+        <NavigationMenuItem className="text-white hover:text-gray-200 px-4 py-2 rounded-md">
+          <Link to="/forum">Forum</Link>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink as={Link} to="/profile">
-            Profile
-          </NavigationMenuLink>
+        <NavigationMenuItem className="text-white hover:text-gray-200 px-4 py-2 rounded-md">
+          <Link to="/profile"> Profile</Link>
         </NavigationMenuItem>
-      </NavigationMenuList>
-      <NavigationMenuList>
-        <NavigationMenuItem className="">
-          <NavigationMenuLink as={Link} to="/signout">
-            Signout
-          </NavigationMenuLink>
+        <NavigationMenuItem className="text-white hover:text-gray-200 px-4 py-2 rounded-md">
+          <Link to="/news">News</Link>
+        </NavigationMenuItem>
+        {/* Push Signout to the right */}
+        <NavigationMenuItem className="text-white hover:text-gray-200 px-4 py-2 rounded-md">
+          <Link to="/signout">Signout</Link>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
