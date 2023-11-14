@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import supabase from "../../supabase";
 import Navbar from "./Navbar";
-
+import { useAuth } from "@/context/appContext";
 const Dashboard = () => {
   const [dbData, setDbData] = useState([]);
-
+  const { user } = useAuth();
   useEffect(() => {
     async function fetchDbData() {
       try {
@@ -27,6 +27,7 @@ const Dashboard = () => {
     fetchDbData();
   }, []);
 
+  console.log(user);
   return (
     <div>
       <Navbar />

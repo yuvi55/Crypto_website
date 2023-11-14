@@ -1,14 +1,27 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
+import supabase from "../../supabase";
+import { getCurrentUserSession } from "../../supabase";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   // TODO: Add logic to check if user is logged in
   const navigate = useNavigate();
+  const [user, setUser] = useState({ isUserLoggedIn: false, session: null });
+  useEffect(() => {
+    async function get_session() {
+      const data = await getCurrentUserSession();
+      if (data) {
+        setUser({ isUserLoggedIn: true, session: data });
+      } else {
+        setUser({ isUserLoggedIn: false, session: null });
+        navigate("/login");
+      }
+    }
+    get_session();
+  }, [user.isUserLoggedIn]);
 
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
 
   const contextData = {
     user,

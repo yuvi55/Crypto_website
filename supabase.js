@@ -6,4 +6,19 @@ let api_key =
 // Create a single supabase client for interacting with your database
 const supabase = createClient(url, api_key);
 
+export const getCurrentUserSession = async () => {
+  try {
+    const { data: session, error } = await supabase.auth.getSession();
+
+    if (error) {
+      console.error("Error getting user session:", error.message);
+      return null;
+    }
+    return session;
+  } catch (error) {
+    console.error("Error:", error.message);
+    return null;
+  }
+};
+
 export default supabase;
