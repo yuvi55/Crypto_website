@@ -10,8 +10,8 @@ import {
 
 const Navbar = () => {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
+    <NavigationMenu className="bg-blue-400 flex justify-between items-center">
+      <NavigationMenuList className="">
         <NavigationMenuItem>
           {/* Logo */}
           <Link to="/">
@@ -29,7 +29,9 @@ const Navbar = () => {
             Profile
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+      </NavigationMenuList>
+      <NavigationMenuList>
+        <NavigationMenuItem className="">
           <NavigationMenuLink as={Link} to="/signout">
             Signout
           </NavigationMenuLink>

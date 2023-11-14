@@ -11,8 +11,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     async function get_session() {
       const data = await getCurrentUserSession();
+      const data_req = data.session.user;
       if (data) {
-        setUser({ isUserLoggedIn: true, session: data });
+        setUser({ isUserLoggedIn: true, session: data_req });
       } else {
         setUser({ isUserLoggedIn: false, session: null });
         navigate("/login");

@@ -7,6 +7,8 @@ import Dashboard from "@/components/Dashboard";
 import NewsFeed from "./components/NewsFeed";
 import Coin_Info from "./components/Coin_Info";
 import Forum from "./components/Forum";
+import QuestionForm from "./components/QuestionForm";
+import Comments from "./components/Comments";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +42,14 @@ export const router = createBrowserRouter([
       {
         path: "/forum",
         element: <Forum />,
+      },
+      {
+        path: "/questions",
+        element: <QuestionForm />,
+      },
+      {
+        path: "forum/:id/comments",
+        element: <Comments />,
       },
       ,
     ],
