@@ -60,12 +60,12 @@ const Comments = ({ question_id }) => {
         Comment
       </button>
       <div className="mt-8">
-        <h2 className="text-2xl font-semibold mb-4">Posted Comments</h2>
+        <h2 className="text-xl font-semibold mb-4">Posted Comments</h2>
         {comments.map((comment) => (
           <div key={comment.id} className="rounded-lg shadow-md p-4 mb-4">
-            <h3 className="text-xl font-semibold mb-2">{comment.comments}</h3>
+            <h3 className="text-sm font-semibold mb-2">{comment.comments}</h3>
             <div className="flex justify-between items-center">
-              <p className="text-blue-500">By: {comment.user_name}</p>
+              <p className="text-blue-500 text-sm">By: {comment.user_name}</p>
             </div>
           </div>
         ))}

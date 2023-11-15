@@ -9,6 +9,7 @@ import Coin_Info from "./components/Coin_Info";
 import Forum from "./components/Forum";
 import QuestionForm from "./components/QuestionForm";
 import Comments from "./components/Comments";
+import Search from "./components/Search";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "forum/:id/comments",
         element: <Comments />,
+      },
+      {
+        path: "search/:search_param",
+        element: <Search />,
       },
       ,
     ],

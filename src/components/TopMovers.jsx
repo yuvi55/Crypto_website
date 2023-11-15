@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 const TopMovers = () => {
   const [topMovers, setTopMovers] = useState([]);
 
@@ -37,8 +37,10 @@ const TopMovers = () => {
                 className="h-8 w-8 mr-2"
               />
               <div>
-                <h3 className="text-xl font-semibold">{item.NAME}</h3>
-                <p className="text-gray-500">{item.SYMBOL}</p>
+                <Link to={`/coin_info/${item.SYMBOL}`}>
+                  <h3 className="text-xl font-semibold">{item.NAME}</h3>
+                  <p className="text-gray-500">{item.SYMBOL}</p>
+                </Link>
               </div>
             </div>
             <div className="text-center">
