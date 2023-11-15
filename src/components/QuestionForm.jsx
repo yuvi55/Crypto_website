@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import supabase from "../../supabase";
 import { useAuth } from "@/context/appContext";
-import { redirect } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const QuestionForm = () => {
   const { user } = useAuth();
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
   const [data, setData] = useState("");
+  const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -27,7 +27,7 @@ const QuestionForm = () => {
     setQuestion("");
 
     if (data) {
-      redirect("/forum");
+      navigate("/forum");
     }
   }
 
