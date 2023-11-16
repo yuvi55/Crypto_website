@@ -1,6 +1,6 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
-import { AuthProvider } from "@/context/AppContext";
+import { AuthProvider } from "@/context/appContext";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { Outlet } from "react-router-dom";
