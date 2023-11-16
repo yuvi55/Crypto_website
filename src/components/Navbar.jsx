@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import supabase from "../../supabase";
+import Signout from "./Signout";
 import {
   NavigationMenu,
   NavigationMenuLink,
@@ -10,10 +11,6 @@ import {
 
 const Navbar = () => {
   const navigate = useNavigate();
-  async function signout() {
-    const { error } = await supabase.auth.signOut();
-    navigate("/login");
-  }
 
   return (
     <NavigationMenu className="bg-blue-500 py-4">
@@ -40,7 +37,7 @@ const Navbar = () => {
         </NavigationMenuItem>
         {/* Push Signout to the right */}
         <NavigationMenuItem className="text-white hover:text-gray-200 px-4 py-2 rounded-md">
-          <button onClick={signout}>Signout</button>
+          <Signout />
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

@@ -48,7 +48,7 @@ const QuestionCards = () => {
           {/* CommentsList Component questionId=question.id */}
           <Comments question_id={question.id} />
           <div>
-            {question.user_id === user_data.user.session.id && (
+            {question?.user_id === user_data?.user.session.id && (
               <button
                 onClick={() => handleDelete(question.id)}
                 className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-300"
