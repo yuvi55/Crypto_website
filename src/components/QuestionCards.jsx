@@ -33,7 +33,6 @@ const QuestionCards = () => {
       console.error("Error deleting question:", error.message);
     }
   }
-  console.log(user_data);
   return (
     <div className="grid grid-cols-1 gap-4 p-4">
       {questions.map((question) => (

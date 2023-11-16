@@ -26,7 +26,7 @@ const TopMovers = () => {
 
   return (
     <div>
-      <h1>Top Movers of the Day</h1>
+      <h1 className="font-bold mb-4">Top Movers of the Day</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
         {topMovers.map((item) => (
           <div key={item.ID} className="bg-white rounded-lg shadow-md p-4">

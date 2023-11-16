@@ -43,8 +43,8 @@ const Dashboard = () => {
   return (
     <div className="w-full">
       <Navbar />
-      <h1 className="text-2xl font-bold mb-4 text-center">
-        Welcome to Crypto Info
+      <h1 className="text-4xl font-bold mb-4 text-center my-10">
+        Welcome to Coin Info
       </h1>
       <div className="flex items-center justify-center mb-4">
         <label className="mr-2">Search for an asset</label>
