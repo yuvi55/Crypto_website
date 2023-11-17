@@ -7,8 +7,8 @@ This web app: **Track your favorite cryptocurrencies, ask questions on the forum
 Time spent: **18** hours spent in total
 
 Test user for testing application:
-Username : test@gmail.com
-password: test1234
+**Username :** test@gmail.com
+**password:** test1234
 
 ## Required Features
 
