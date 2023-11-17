@@ -43,7 +43,7 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
+Here's a walkthrough of implemented website:
 
 <img src='https://github.com/yuvi55/Crypto_website/blob/main/Kapture%202023-11-17%20at%2010.55.37.gif?raw=true' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
