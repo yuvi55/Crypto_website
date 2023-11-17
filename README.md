@@ -6,6 +6,10 @@ This web app: **Track your favorite cryptocurrencies, ask questions on the forum
 
 Time spent: **18** hours spent in total
 
+Test user for testing application:
+Username : test
+password: test1234
+
 ## Required Features
 
 The following **required** functionality is completed:
