@@ -9,13 +9,16 @@ const Search = () => {
   const [searchData, setSearchData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   useEffect(() => {
     const getSearchDataDb = async () => {
       try {
         const { data, error } = await supabase
           .from("coin_data")
           .select("*")
-          .eq("CoinName", search_param);
+          .eq("CoinName", capitalizeFirstLetter(search_param));
 
         if (error) {
           console.error("Error fetching data:", error.message);
