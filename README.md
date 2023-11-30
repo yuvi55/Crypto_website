@@ -3,7 +3,7 @@
 Submitted by: **Yuvaraj Nagi**
 
 This web app: **Track your favorite cryptocurrencies, ask questions on the forum page and stay up to date with the latest news in the Crypto Industry**
-
+Link: https://crypto30-info.netlify.app
 Time spent: **18** hours spent in total
 
 Test user for testing application:
