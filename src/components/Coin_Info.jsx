@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import CandleStick from "./CandleStick";
 import Navbar from "./Navbar";
 import axios from "axios";
-import { Api } from "@kwilteam/kwil-js/dist/api_client/api";
 
 const Coin_Info = () => {
   const [data, setData] = useState(null);
