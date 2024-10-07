@@ -30,9 +30,6 @@ const Navbar = () => {
           <Link to="/forum">Forum</Link>
         </NavigationMenuItem>
         <NavigationMenuItem className="text-white hover:text-gray-200 px-4 py-2 rounded-md">
-          <Link to="/profile"> Profile</Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem className="text-white hover:text-gray-200 px-4 py-2 rounded-md">
           <Link to="/news">News</Link>
         </NavigationMenuItem>
         {/* Push Signout to the right */}

@@ -5,14 +5,17 @@ import Navbar from "./Navbar";
 
 const Search = () => {
   const { search_param } = useParams();
-  const [dbData, setDbData] = useState([]);
+  const [dbData, setDbData] = useState(null);
   const [searchData, setSearchData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [searchInput, setSearchInput] = useState("");
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
   useEffect(() => {
+    // Fetch data from the database
     const getSearchDataDb = async () => {
       try {
         const { data, error } = await supabase
@@ -25,18 +28,34 @@ const Search = () => {
           return;
         }
 
-        setDbData(data || []);
+        // Ensure data is not empty before calling setDbData
+        if (data && data.length > 0) {
+          setDbData(data[0]); // Store only the first item if found
+          console.log("Data fetched:", data[0]);
+        } else {
+          console.error("No matching coin data found");
+          setLoading(false);
+        }
       } catch (e) {
         console.error("Error:", e.message);
+        setLoading(false);
       }
     };
 
+    getSearchDataDb();
+  }, [search_param, searchInput]); // Only triggers when search_param or searchInput is updated
+
+  useEffect(() => {
+    // Fetch symbol data only when dbData is available
     const getSymbolData = async () => {
+      if (!dbData) return;
+
       try {
-        const url = `https://data-api.cryptocompare.com/asset/v1/data/by/symbol?asset_symbol=${dbData[0]?.Symbol}`;
-        const apiKey =
-          "c42a9d023ca08af6d574a6c4a11ebb116d248b3ffb46048493db4c5c098f3d89";
-        const finalUrl = `${url}&lang=EN&apikey=${apiKey}`;
+        const url = `https://data-api.cryptocompare.com/asset/v1/data/by/symbol?asset_symbol=${dbData.Symbol}`;
+
+        const finalUrl = `${url}&lang=EN&api_key=${
+          import.meta.env.VITE_CRYPTO_API_KEY
+        }`;
 
         const response = await fetch(finalUrl);
         const data = await response.json();
@@ -49,13 +68,13 @@ const Search = () => {
       }
     };
 
-    getSearchDataDb();
     getSymbolData();
-  }, [search_param, dbData]);
+  }, [dbData]); // Only triggers when dbData is updated
 
   return (
     <div>
       <Navbar />
+
       <div className="container mx-auto mt-8">
         <h1 className="text-3xl font-bold mb-4">
           Asset found with the name {search_param}:
@@ -110,7 +129,9 @@ const Search = () => {
                 <div>
                   <p className="font-semibold">Consensus Mechanism:</p>
                   <p>
-                    {searchData.CONSENSUS_MECHANISMS ? [0].NAME : "Not found"}
+                    {searchData.CONSENSUS_MECHANISMS
+                      ? searchData.CONSENSUS_MECHANISMS[0].NAME
+                      : "Not found"}
                   </p>
                 </div>
                 <div>

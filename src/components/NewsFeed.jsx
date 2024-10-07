@@ -5,9 +5,7 @@ const NewsFeed = () => {
   const [news, setNews] = useState([]);
 
   let url = "https://min-api.cryptocompare.com/data/v2/news/";
-  let apiKey =
-    "c42a9d023ca08af6d574a6c4a11ebb116d248b3ffb46048493db4c5c098f3d89";
-  let finalUrl = `${url}?lang=EN&apikey=${apiKey}`;
+  let finalUrl = `${url}?lang=EN&apikey=${import.meta.env.VITE_CRYPTO_API_KEY}`;
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {

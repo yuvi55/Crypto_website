@@ -2,33 +2,41 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CandleStick from "./CandleStick";
 import Navbar from "./Navbar";
+import axios from "axios";
+import { Api } from "@kwilteam/kwil-js/dist/api_client/api";
+
 const Coin_Info = () => {
   const [data, setData] = useState(null);
   const [chart, setChart] = useState([]);
   const { symbol } = useParams();
+
+  // API URLs
   const url_charts = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${symbol}&tsym=USD&limit=100`;
   const url = `https://data-api.cryptocompare.com/asset/v1/data/by/symbol?asset_symbol=${symbol}`;
-  const apiKey =
-    "c42a9d023ca08af6d574a6c4a11ebb116d248b3ffb46048493db4c5c098f3d89";
-  const finalUrl = `${url}&lang=EN&apikey=${apiKey}`;
-  const finalUrl_charts = `${url_charts}&lang=EN&apikey=${apiKey}`;
+
+  // API key from environment variables
+  const apiKey = import.meta.env.VITE_CRYPTO_API_KEY;
+
+  const finalUrl = `${url}&lang=EN&api_key=${apiKey}`;
+  const finalUrl_charts = `${url_charts}&lang=EN&api_key=${apiKey}`;
 
   useEffect(() => {
     async function fetchIndData() {
       try {
-        const response = await fetch(finalUrl);
-        const response_charts = await fetch(finalUrl_charts);
-        const data = await response.json();
-        const chart_data = await response_charts.json();
-        const data_req = data.Data;
-        const chart_data_req = chart_data.Data;
+        // Fetch individual coin data
+        const response = await axios.get(finalUrl);
+        const data_req = response.data.Data; // Get the specific data from the response
         setData(data_req);
 
-        setChart(chart_data_req.Data);
+        // Fetch chart data
+        const response_charts = await axios.get(finalUrl_charts);
+        const chart_data_req = response_charts.data.Data;
+        setChart(chart_data_req.Data); // Set chart data
       } catch (e) {
-        console.error("Error fetching individual data:", e);
+        console.error("Error fetching data:", e);
       }
     }
+
     fetchIndData();
   }, [finalUrl, finalUrl_charts]);
 
@@ -44,49 +52,49 @@ const Coin_Info = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="items-center">
               <img
-                src={data.LOGO_URL}
-                alt={`${data.NAME} Logo`}
+                src={data?.LOGO_URL}
+                alt={`${data?.NAME} Logo`}
                 className="w-32 h-32 mb-4 rounded-full"
               />
-              <p className="text-2xl font-semibold mb-2">{data.NAME}</p>
+              <p className="text-2xl font-semibold mb-2">{data?.NAME}</p>
             </div>
             <div>
               <p className="text-gray-600 mb-4">
-                Description: {data.ASSET_DESCRIPTION_SUMMARY}
+                Description: {data?.ASSET_DESCRIPTION_SUMMARY}
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="font-semibold">Launch Date:</p>
                   <p>
-                    {new Date(data.LAUNCH_DATE * 1000).toLocaleDateString()}
+                    {new Date(data?.LAUNCH_DATE * 1000).toLocaleDateString()}
                   </p>
                 </div>
                 <div>
                   <p className="font-semibold">Asset Type:</p>
-                  <p>{data.ASSET_TYPE}</p>
+                  <p>{data?.ASSET_TYPE}</p>
                 </div>
                 <div>
                   <p className="font-semibold">Symbol:</p>
-                  <p>{data.SYMBOL}</p>
+                  <p>{data?.SYMBOL}</p>
                 </div>
                 <div>
                   <p className="font-semibold">Blockchain:</p>
-                  <p>{data.SUPPORTED_PLATFORMS[0]?.BLOCKCHAIN}</p>
+                  <p>{data?.SUPPORTED_PLATFORMS[0]?.BLOCKCHAIN}</p>
                 </div>
                 <div>
                   <p className="font-semibold">Token Standard:</p>
-                  <p>{data.SUPPORTED_PLATFORMS[0]?.TOKEN_STANDARD}</p>
+                  <p>{data?.SUPPORTED_PLATFORMS[0]?.TOKEN_STANDARD}</p>
                 </div>
                 <div>
                   <p className="font-semibold">Explorer URL:</p>
                   <p>
                     <a
-                      href={data.SUPPORTED_PLATFORMS[0]?.EXPLORER_URL}
+                      href={data?.SUPPORTED_PLATFORMS[0]?.EXPLORER_URL}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-500 text-base break-words"
                     >
-                      {data.SUPPORTED_PLATFORMS[0]?.EXPLORER_URL}
+                      {data?.SUPPORTED_PLATFORMS[0]?.EXPLORER_URL}
                     </a>
                   </p>
                 </div>
